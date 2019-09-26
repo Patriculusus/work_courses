@@ -21,10 +21,11 @@
                 <configuration>
                     <!-- Suite testng xml file to consider for test execution -->
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
-                        <suiteXmlFile>suites-test-testng.xml</suiteXmlFile>
+                        <suiteXmlFile>main/test/javaMyTest.xml</suiteXmlFile>
+                        <!--                        <suiteXmlFile>testng.xml</suiteXmlFile>-->
+                        <!--                        <suiteXmlFile>suites-test-testng.xml</suiteXmlFile>-->
                     </suiteXmlFiles>
-    <argLine >-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.4/aspectjweaver-1.9.4.jar"</argLine >
+                    <argLine >-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.4/aspectjweaver-1.9.4.jar"</argLine >
                     <systemProperties>
                         <property>
                             <name>allure.results.directory</name>
@@ -48,7 +49,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-<!--                    <encoding>UTF-8</encoding>-->
+                    <!--                    <encoding>UTF-8</encoding>-->
                 </configuration>
             </plugin>
 
