@@ -14,18 +14,48 @@
         <plugins>
 
             <!-- Following plugin executes the testng tests -->
+<!--           -->
+
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-surefire-plugin</artifactId>-->
+<!--                <version>2.22.2</version>-->
+<!--                <configuration>-->
+<!--                    &lt;!&ndash; Suite testng xml file to consider for test execution &ndash;&gt;-->
+<!--                    <suiteXmlFiles>-->
+<!--                        <suiteXmlFile>main/test/javaMyTest.xml</suiteXmlFile>-->
+<!--                        &lt;!&ndash;                        <suiteXmlFile>testng.xml</suiteXmlFile>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        <suiteXmlFile>suites-test-testng.xml</suiteXmlFile>&ndash;&gt;-->
+<!--                    </suiteXmlFiles>-->
+<!--                    <argLine >-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.4/aspectjweaver-1.9.4.jar"</argLine >-->
+<!--                    <systemProperties>-->
+<!--                        <property>-->
+<!--                            <name>allure.results.directory</name>-->
+<!--                            <value>${project.build.directory}/allure-results</value>-->
+<!--                        </property>-->
+<!--                    </systemProperties>-->
+<!--                </configuration>-->
+<!--                <dependencies>-->
+<!--                    <dependency>-->
+<!--                        <groupId>org.aspectj</groupId>-->
+<!--                        <artifactId>aspectjweaver</artifactId>-->
+<!--                        <version>1.9.4</version>-->
+<!--                    </dependency>-->
+<!--                </dependencies>-->
+
+<!--            </plugin>-->
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
                 <configuration>
-                    <!-- Suite testng xml file to consider for test execution -->
-                    <suiteXmlFiles>
-                        <suiteXmlFile>main/test/javaMyTest.xml</suiteXmlFile>
-                        <!--                        <suiteXmlFile>testng.xml</suiteXmlFile>-->
-                        <!--                        <suiteXmlFile>suites-test-testng.xml</suiteXmlFile>-->
-                    </suiteXmlFiles>
-                    <argLine >-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.4/aspectjweaver-1.9.4.jar"</argLine >
+                    <testFailureIgnore>false</testFailureIgnore>
+                    <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.4/aspectjweaver-1.9.4.jar"</argLine>
+                    <systemPropertyVariables>
+                        <base.url>${base.url}/</base.url>
+                        <my.property>${my.property}</my.property>
+                    </systemPropertyVariables>
                     <systemProperties>
                         <property>
                             <name>allure.results.directory</name>
@@ -40,8 +70,10 @@
                         <version>1.9.4</version>
                     </dependency>
                 </dependencies>
-
             </plugin>
+
+
+
             <!-- Compiler plugin configures the java version to be used for compiling
             the code -->
             <plugin>
@@ -100,4 +132,25 @@
         <!--            <version>0.9.7376</version>-->
         <!--        </dependency>-->
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <base.url>https://www.seleniumhq.org/</base.url>
+                <my.property>Ola</my.property>
+            </properties>
+        </profile>
+        <profile>
+            <id>demo</id>
+            <properties>
+                <base.url>https://www.google.com.ua</base.url>
+                <my.property>opa</my.property>
+            </properties>
+        </profile>
+    </profiles>
+
 </project>

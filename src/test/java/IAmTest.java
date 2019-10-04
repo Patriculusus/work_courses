@@ -21,7 +21,13 @@ public class IAmTest {
         };
     }
 
-    @Test(dataProvider = "provider")
+    @Test
+    public void myTest(){
+        System.out.println(System.getProperty("my.property"));
+        System.out.println(System.getProperty("base.url"));
+    }
+
+//    @Test(dataProvider = "provider")
     public void test1(String name, String lastName, String mail, String password,
                       String error1, String error2, String error3, String error4) throws InterruptedException {
         System.setProperty("webdriver.chrome.driver", "D:\\driver\\1\\chromedriver5.exe");
